@@ -71,8 +71,22 @@
           "example" : "C:/path/to/index"
         },
         "props" : {
-          "type" : "string",
-          "example" : "Widget Adapter"
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "propName" : {
+                "type" : "string"
+              },
+              "propValue" : {
+                "type" : "string"
+              }
+            }
+          },
+          "example" : [ {
+            "propName" : "docType",
+            "propValue" : "trec"
+          } ]
         }
       }
     },
