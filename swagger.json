@@ -31,33 +31,6 @@
             }
           }
         }
-      },
-      "post" : {
-        "tags" : [ "admins" ],
-        "summary" : "adds an inventory item",
-        "operationId" : "addInventory",
-        "description" : "Adds an item to the system",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "inventoryItem",
-          "description" : "Inventory item to add",
-          "schema" : {
-            "$ref" : "#/definitions/Index"
-          }
-        } ],
-        "responses" : {
-          "201" : {
-            "description" : "item created"
-          },
-          "400" : {
-            "description" : "invalid input, object invalid"
-          },
-          "409" : {
-            "description" : "an existing item already exists"
-          }
-        }
       }
     }
   },
@@ -90,21 +63,13 @@
         }
       }
     },
-    "Manufacturer" : {
-      "required" : [ "name" ],
+    "Corpus" : {
+      "type" : "object",
+      "required" : [ "path" ],
       "properties" : {
-        "name" : {
+        "path" : {
           "type" : "string",
-          "example" : "ACME Corporation"
-        },
-        "homePage" : {
-          "type" : "string",
-          "format" : "url",
-          "example" : "https://www.acme-corp.com"
-        },
-        "phone" : {
-          "type" : "string",
-          "example" : "408-867-5309"
+          "example" : "C:/path/to/index"
         }
       }
     }
