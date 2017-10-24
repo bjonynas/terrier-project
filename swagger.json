@@ -62,16 +62,6 @@
           } ]
         }
       }
-    },
-    "Corpus" : {
-      "type" : "object",
-      "required" : [ "path" ],
-      "properties" : {
-        "path" : {
-          "type" : "string",
-          "example" : "C:/path/to/index"
-        }
-      }
     }
   },
   "host" : "virtserver.swaggerhub.com",
