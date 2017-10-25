@@ -41,8 +41,8 @@
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "in" : "body",
           "name" : "path",
+          "in" : "body",
           "description" : "Path to index to be imported",
           "required" : true,
           "type" : "string"
