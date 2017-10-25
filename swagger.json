@@ -32,6 +32,76 @@
           }
         }
       }
+    },
+    "/index/import" : {
+      "post" : {
+        "summary" : "import an existing index",
+        "operationId" : "importIndex",
+        "description" : "Import an existing index\n",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "path",
+          "description" : "Path to index to be imported",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "props",
+          "description" : "Properties of the index being imported",
+          "required" : true,
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "prop" : {
+                "type" : "string"
+              },
+              "propValue" : {
+                "type" : "string"
+              }
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Index import successful"
+          },
+          "404" : {
+            "description" : "Index not found at specified path"
+          }
+        }
+      }
+    },
+    "/retrieve" : {
+      "get" : {
+        "summary" : "run a query against a specified index",
+        "operationId" : "retrieve",
+        "description" : "Runs a query agianst a specified index\n",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "searchRequest",
+          "description" : "searchRequest containing the query and its parameters",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/SearchRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "query results",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/QueryResult"
+              }
+            }
+          }
+        }
+      }
     }
   },
   "definitions" : {
@@ -60,6 +130,65 @@
             "propName" : "docType",
             "propValue" : "trec"
           } ]
+        }
+      }
+    },
+    "SearchRequest" : {
+      "type" : "object",
+      "required" : [ "controls", "query" ],
+      "properties" : {
+        "queryId" : {
+          "type" : "string",
+          "example" : "1"
+        },
+        "controls" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "control" : {
+                "type" : "string"
+              },
+              "controlValue" : {
+                "type" : "string"
+              }
+            }
+          },
+          "example" : [ {
+            "control" : "querying.postfilters.controls",
+            "controlValue" : "decorate:org.terrier.querying.SimpleDecorate"
+          } ]
+        },
+        "query" : {
+          "type" : "string",
+          "example" : "NUMBER REPRESENTATION IN BINARY MACHINES"
+        }
+      }
+    },
+    "QueryResult" : {
+      "type" : "object",
+      "required" : [ "docIds", "scores", "resultSize", "occurences" ],
+      "properties" : {
+        "docIds" : {
+          "type" : "array",
+          "items" : {
+            "type" : "integer"
+          }
+        },
+        "scores" : {
+          "type" : "array",
+          "items" : {
+            "type" : "integer"
+          }
+        },
+        "resultSize" : {
+          "type" : "integer"
+        },
+        "occurences" : {
+          "type" : "array",
+          "items" : {
+            "type" : "integer"
+          }
         }
       }
     }
