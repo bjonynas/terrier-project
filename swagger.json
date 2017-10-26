@@ -15,7 +15,7 @@
   "paths" : {
     "/index" : {
       "get" : {
-        "summary" : "gets all available indexes",
+        "summary" : "get all available indexes",
         "operationId" : "getIndexes",
         "description" : "Get all available indexes\n",
         "produces" : [ "application/json" ],
@@ -29,6 +29,24 @@
                 "$ref" : "#/definitions/Index"
               }
             }
+          }
+        }
+      }
+    },
+    "/index/import" : {
+      "post" : {
+        "summary" : "import existing index",
+        "operationId" : "importIndex",
+        "description" : "Import existing index\n",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "index successfuly imported"
+          },
+          "400" : {
+            "description" : "incorrect input"
           }
         }
       }
