@@ -5,7 +5,7 @@
     "version" : "1.0.0",
     "title" : "Terrier Remote API",
     "contact" : {
-      "email" : "bjonynas@gmail.com"
+      "email" : "2133815j@student.gla.ac.uk"
     },
     "license" : {
       "name" : "Apache 2.0",
@@ -38,9 +38,38 @@
         "summary" : "import existing index",
         "operationId" : "importIndex",
         "description" : "Import existing index\n",
-        "consumes" : [ "application/json" ],
+        "consumes" : [ "multipart/form-data" ],
         "produces" : [ "application/json" ],
-        "parameters" : [ ],
+        "parameters" : [ {
+          "name" : "path",
+          "in" : "formData",
+          "description" : "Path to the index",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "documentType",
+          "in" : "formData",
+          "description" : "Type of documents to be indexed",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "indexProperties",
+          "in" : "formData",
+          "description" : "Indexing options, such as stopping, stemming, block indexing, etc.",
+          "required" : "false",
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "propName" : {
+                "type" : "string"
+              },
+              "propValue" : {
+                "type" : "string"
+              }
+            }
+          }
+        } ],
         "responses" : {
           "200" : {
             "description" : "index successfuly imported"
