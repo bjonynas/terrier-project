@@ -127,22 +127,22 @@
         }
       }
     },
-    "/documents/{index}" : {
+    "/documents/{collection}" : {
       "get" : {
-        "summary" : "get list of indexed documents",
+        "summary" : "get list of documents in the specified collection",
         "operationId" : "getDocuments",
-        "description" : "Get a list of all documents in selected index\"\n",
+        "description" : "Get a list of all documents in specified collection\"\n",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "index",
+          "name" : "collection",
           "in" : "path",
-          "description" : "id of the index for which documents are to be shown",
+          "description" : "path of the collection from which documents are to be shown",
           "required" : true,
           "type" : "string"
         } ],
         "responses" : {
           "200" : {
-            "description" : "list of indexed documents",
+            "description" : "list of documents",
             "schema" : {
               "type" : "array",
               "items" : {
@@ -153,15 +153,15 @@
         }
       },
       "post" : {
-        "summary" : "add documents to an indexed collection",
+        "summary" : "add documents to a collection",
         "operationId" : "addDocuments",
-        "description" : "Add documents to the collection indexed by specified index\n",
+        "description" : "Add documents to the specified collection\n",
         "consumes" : [ "application/x-www-form-urlencoded" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "index",
+          "name" : "collection",
           "in" : "path",
-          "description" : "id of the index for which documents are to be shown",
+          "description" : "path of the collection for which documents are to be shown",
           "required" : true,
           "type" : "string"
         }, {
@@ -174,6 +174,37 @@
         "responses" : {
           "200" : {
             "description" : "successfully added documents"
+          },
+          "400" : {
+            "description" : "invalid input"
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "delete documents from specified collection",
+        "operationId" : "deleteDocuments",
+        "description" : "Delete document(s) from the specified collection\n",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "collection",
+          "in" : "path",
+          "description" : "path of the index from the collection of which documents are to be deleted",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "documents",
+          "in" : "body",
+          "description" : "array of documents to be deleted",
+          "required" : true,
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "documents successfully deleted"
           },
           "400" : {
             "description" : "invalid input"
