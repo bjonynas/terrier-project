@@ -181,7 +181,7 @@
         }
       },
       "delete" : {
-        "summary" : "delete documents from specified collection",
+        "summary" : "delete document from specified collection",
         "operationId" : "deleteDocuments",
         "description" : "Delete document(s) from the specified collection\n",
         "consumes" : [ "application/json" ],
@@ -194,13 +194,10 @@
           "type" : "string"
         }, {
           "name" : "documents",
-          "in" : "body",
-          "description" : "array of documents to be deleted",
+          "in" : "query",
+          "description" : "document to be deleted",
           "required" : true,
-          "type" : "array",
-          "items" : {
-            "type" : "string"
-          }
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
@@ -214,9 +211,9 @@
     },
     "/retrieve" : {
       "get" : {
-        "summary" : "run a query against a specified index",
+        "summary" : "run a query",
         "operationId" : "retrieve",
-        "description" : "Runs a query agianst a specified index\n",
+        "description" : "Runs a query\n",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
