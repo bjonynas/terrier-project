@@ -72,7 +72,54 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "index successfuly imported"
+            "description" : "index successfuly created"
+          },
+          "400" : {
+            "description" : "incorrect input"
+          }
+        }
+      }
+    },
+    "/index/new" : {
+      "post" : {
+        "summary" : "create a new index",
+        "operationId" : "newIndex",
+        "description" : "Create a new index for a collection of documents\n",
+        "consumes" : [ "multipart/form-data" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "path",
+          "in" : "formData",
+          "description" : "Path to the collection",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "documentType",
+          "in" : "formData",
+          "description" : "Type of documents to be indexed",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "indexProperties",
+          "in" : "formData",
+          "description" : "Indexing options, such as stopping, stemming, block indexing, etc.",
+          "required" : "false",
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "propName" : {
+                "type" : "string"
+              },
+              "propValue" : {
+                "type" : "string"
+              }
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "index successfuly created"
           },
           "400" : {
             "description" : "incorrect input"
