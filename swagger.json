@@ -38,38 +38,33 @@
         "summary" : "import existing index",
         "operationId" : "importIndex",
         "description" : "Import existing index\n",
-        "consumes" : [ "multipart/form-data" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "path",
-          "in" : "formData",
-          "description" : "Path to the index",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "documentType",
-          "in" : "formData",
-          "description" : "Type of documents to be indexed",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "indexProperties",
-          "in" : "formData",
-          "description" : "Indexing options, such as stopping, stemming, block indexing, etc.",
-          "required" : "false",
-          "type" : "array",
-          "items" : {
-            "type" : "object",
-            "properties" : {
-              "propName" : {
-                "type" : "string"
-              },
-              "propValue" : {
-                "type" : "string"
+        "requestBody" : null,
+        "required" : "true",
+        "content" : {
+          "application/x-www-form-urlencoded" : {
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "path" : {
+                  "type" : "string",
+                  "description" : "Path to the index",
+                  "required" : "true"
+                },
+                "documentType" : {
+                  "type" : "string",
+                  "description" : "Type of indexed documents",
+                  "required" : "true"
+                },
+                "stopWordList" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "string"
+                  }
+                }
               }
             }
           }
-        } ],
+        },
         "responses" : {
           "200" : {
             "description" : "index successfuly created"
@@ -99,23 +94,6 @@
           "description" : "Type of documents to be indexed",
           "required" : true,
           "type" : "string"
-        }, {
-          "name" : "indexProperties",
-          "in" : "formData",
-          "description" : "Indexing options, such as stopping, stemming, block indexing, etc.",
-          "required" : "false",
-          "type" : "array",
-          "items" : {
-            "type" : "object",
-            "properties" : {
-              "propName" : {
-                "type" : "string"
-              },
-              "propValue" : {
-                "type" : "string"
-              }
-            }
-          }
         } ],
         "responses" : {
           "200" : {
