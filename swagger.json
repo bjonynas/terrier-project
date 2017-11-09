@@ -37,34 +37,17 @@
       "post" : {
         "summary" : "import existing index",
         "operationId" : "importIndex",
-        "description" : "Import existing index\n",
-        "requestBody" : null,
-        "required" : "true",
-        "content" : {
-          "application/x-www-form-urlencoded" : {
-            "schema" : {
-              "type" : "object",
-              "properties" : {
-                "path" : {
-                  "type" : "string",
-                  "description" : "Path to the index",
-                  "required" : "true"
-                },
-                "documentType" : {
-                  "type" : "string",
-                  "description" : "Type of indexed documents",
-                  "required" : "true"
-                },
-                "stopWordList" : {
-                  "type" : "array",
-                  "items" : {
-                    "type" : "string"
-                  }
-                }
-              }
-            }
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "index",
+          "description" : "Index object to be imported",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Index"
           }
-        },
+        } ],
         "responses" : {
           "200" : {
             "description" : "index successfuly created"
@@ -220,11 +203,15 @@
   "definitions" : {
     "Index" : {
       "type" : "object",
-      "required" : [ "path", "props" ],
+      "required" : [ "path", "name", "props" ],
       "properties" : {
         "path" : {
           "type" : "string",
           "example" : "C:/path/to/index"
+        },
+        "name" : {
+          "type" : "string",
+          "example" : "index1"
         },
         "props" : {
           "type" : "array",
