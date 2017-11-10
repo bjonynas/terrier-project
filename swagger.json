@@ -88,6 +88,35 @@
         }
       }
     },
+    "/retrieve" : {
+      "get" : {
+        "summary" : "run a query",
+        "operationId" : "retrieve",
+        "description" : "Runs a query\n",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "searchRequest",
+          "description" : "searchRequest containing the query and its parameters",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/SearchRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "query results",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/ResultSet"
+              }
+            }
+          }
+        }
+      }
+    },
     "/documents/{collection}" : {
       "get" : {
         "summary" : "get list of documents in the specified collection",
@@ -169,35 +198,6 @@
           }
         }
       }
-    },
-    "/retrieve" : {
-      "get" : {
-        "summary" : "run a query",
-        "operationId" : "retrieve",
-        "description" : "Runs a query\n",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "searchRequest",
-          "description" : "searchRequest containing the query and its parameters",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/SearchRequest"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "query results",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/QueryResult"
-              }
-            }
-          }
-        }
-      }
     }
   },
   "definitions" : {
@@ -265,9 +265,24 @@
         }
       }
     },
-    "QueryResult" : {
+    "Metadata" : {
       "type" : "object",
-      "required" : [ "docIds", "scores", "resultSize", "occurences" ],
+      "required" : [ "docNo", "title", "url" ],
+      "properties" : {
+        "docNo" : {
+          "type" : "integer"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ResultSet" : {
+      "type" : "object",
+      "required" : [ "docIds", "scores", "resultSize" ],
       "properties" : {
         "docIds" : {
           "type" : "array",
@@ -284,11 +299,8 @@
         "resultSize" : {
           "type" : "integer"
         },
-        "occurences" : {
-          "type" : "array",
-          "items" : {
-            "type" : "integer"
-          }
+        "metadata" : {
+          "$ref" : "#/definitions/Metadata"
         }
       }
     },
