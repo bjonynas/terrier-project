@@ -88,20 +88,25 @@
         }
       }
     },
-    "/retrieve" : {
+    "/index/{indexId}/retrieve" : {
       "get" : {
         "summary" : "run a query",
         "operationId" : "retrieve",
         "description" : "Runs a query\n",
-        "consumes" : [ "application/json" ],
+        "consumes" : [ "application/x-www-form-urlencoded" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "in" : "body",
-          "name" : "searchRequest",
-          "description" : "searchRequest containing the query and its parameters",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/SearchRequest"
+          "in" : "path",
+          "name" : "indexId",
+          "type" : "string",
+          "description" : "Id of the index to be queried",
+          "required" : true
+        }, {
+          "in" : "formData",
+          "name" : "queryOptions",
+          "type" : "array",
+          "items" : {
+            "type" : "string"
           }
         } ],
         "responses" : {
@@ -267,16 +272,21 @@
     },
     "Metadata" : {
       "type" : "object",
-      "required" : [ "docNo", "title", "url" ],
+      "required" : [ "data" ],
       "properties" : {
-        "docNo" : {
-          "type" : "integer"
-        },
-        "title" : {
-          "type" : "string"
-        },
-        "url" : {
-          "type" : "string"
+        "data" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "name" : {
+                "type" : "string"
+              },
+              "value" : {
+                "type" : "string"
+              }
+            }
+          }
         }
       }
     },
