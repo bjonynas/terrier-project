@@ -267,20 +267,8 @@
         "props" : {
           "type" : "array",
           "items" : {
-            "type" : "object",
-            "properties" : {
-              "propName" : {
-                "type" : "string"
-              },
-              "propValue" : {
-                "type" : "string"
-              }
-            }
-          },
-          "example" : [ {
-            "propName" : "docType",
-            "propValue" : "trec"
-          } ]
+            "$ref" : "#/definitions/KeyValue"
+          }
         }
       }
     },
@@ -312,20 +300,8 @@
         "controls" : {
           "type" : "array",
           "items" : {
-            "type" : "object",
-            "properties" : {
-              "control" : {
-                "type" : "string"
-              },
-              "controlValue" : {
-                "type" : "string"
-              }
-            }
-          },
-          "example" : [ {
-            "control" : "querying.postfilters.controls",
-            "controlValue" : "decorate:org.terrier.querying.SimpleDecorate"
-          } ]
+            "$ref" : "#/definitions/KeyValue"
+          }
         },
         "query" : {
           "type" : "string",
@@ -340,15 +316,7 @@
         "data" : {
           "type" : "array",
           "items" : {
-            "type" : "object",
-            "properties" : {
-              "name" : {
-                "type" : "string"
-              },
-              "value" : {
-                "type" : "string"
-              }
-            }
+            "$ref" : "#/definitions/KeyValue"
           }
         }
       }
@@ -382,6 +350,17 @@
       "required" : [ "filename" ],
       "properties" : {
         "filename" : {
+          "type" : "string"
+        }
+      }
+    },
+    "KeyValue" : {
+      "type" : "object",
+      "properties" : {
+        "propName" : {
+          "type" : "string"
+        },
+        "propValue" : {
           "type" : "string"
         }
       }
