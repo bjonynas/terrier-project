@@ -29,20 +29,23 @@
                 "$ref" : "#/definitions/Index"
               }
             }
+          },
+          "500" : {
+            "description" : "server error while retrieving indexes"
           }
         }
       }
     },
     "/index/import" : {
       "post" : {
-        "summary" : "import existing index",
+        "summary" : "import existing index and return its id",
         "operationId" : "importIndex",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "body",
           "name" : "index",
-          "description" : "Index object to be imported",
+          "description" : "Index object to be imported. Returns the name of the imported index",
           "required" : true,
           "schema" : {
             "$ref" : "#/definitions/Index"
@@ -50,7 +53,10 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "index successfuly created"
+            "description" : "index successfuly created",
+            "schema" : {
+              "type" : "string"
+            }
           },
           "400" : {
             "description" : "incorrect input"
@@ -118,6 +124,37 @@
                 "$ref" : "#/definitions/ResultSet"
               }
             }
+          },
+          "403" : {
+            "description" : "incorrect input"
+          },
+          "404" : {
+            "description" : "index not found"
+          }
+        }
+      }
+    },
+    "/index/{indexId}/stats" : {
+      "get" : {
+        "summary" : "view stats about the specified index",
+        "operationId" : "stats",
+        "description" : "View stats about the index\n",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "indexId",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "stats object for the specified index",
+            "schema" : {
+              "$ref" : "#/definitions/IndexStats"
+            }
+          },
+          "404" : {
+            "description" : "index not found"
           }
         }
       }
@@ -144,6 +181,9 @@
                 "$ref" : "#/definitions/Document"
               }
             }
+          },
+          "404" : {
+            "description" : "collection not found"
           }
         }
       },
@@ -172,6 +212,9 @@
           },
           "400" : {
             "description" : "invalid input"
+          },
+          "500" : {
+            "description" : "server error while adding documents"
           }
         }
       },
@@ -200,6 +243,9 @@
           },
           "400" : {
             "description" : "invalid input"
+          },
+          "500" : {
+            "description" : "server error while deleting documents"
           }
         }
       }
@@ -235,6 +281,23 @@
             "propName" : "docType",
             "propValue" : "trec"
           } ]
+        }
+      }
+    },
+    "IndexStats" : {
+      "type" : "object",
+      "properties" : {
+        "numberOfDocuments" : {
+          "type" : "integer"
+        },
+        "numberOfTerms" : {
+          "type" : "integer"
+        },
+        "numberOfTokens" : {
+          "type" : "integer"
+        },
+        "numberOfPointers" : {
+          "type" : "integer"
         }
       }
     },
