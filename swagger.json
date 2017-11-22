@@ -282,10 +282,12 @@
           "type" : "integer"
         },
         "numberOfTokens" : {
-          "type" : "integer"
+          "type" : "integer",
+          "format" : "int64"
         },
         "numberOfPointers" : {
-          "type" : "integer"
+          "type" : "integer",
+          "format" : "int64"
         }
       }
     },
