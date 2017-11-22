@@ -26,7 +26,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/Index"
+                "$ref" : "#/definitions/RemoteIndex"
               }
             }
           },
@@ -48,7 +48,7 @@
           "description" : "Index object to be imported. Returns the name of the imported index",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/Index"
+            "$ref" : "#/definitions/RemoteIndex"
           }
         } ],
         "responses" : {
@@ -121,7 +121,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/ResultSet"
+                "$ref" : "#/definitions/RemoteResultSet"
               }
             }
           },
@@ -178,7 +178,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/Document"
+                "$ref" : "#/definitions/RemoteDocument"
               }
             }
           },
@@ -252,7 +252,7 @@
     }
   },
   "definitions" : {
-    "Index" : {
+    "RemoteIndex" : {
       "type" : "object",
       "required" : [ "path", "name", "props" ],
       "properties" : {
@@ -301,7 +301,7 @@
         }
       }
     },
-    "SearchRequest" : {
+    "RemoteSearchRequest" : {
       "type" : "object",
       "required" : [ "controls", "query" ],
       "properties" : {
@@ -353,7 +353,7 @@
         }
       }
     },
-    "ResultSet" : {
+    "RemoteResultSet" : {
       "type" : "object",
       "required" : [ "docIds", "scores", "resultSize" ],
       "properties" : {
@@ -377,7 +377,7 @@
         }
       }
     },
-    "Document" : {
+    "RemoteDocument" : {
       "type" : "object",
       "required" : [ "filename" ],
       "properties" : {
