@@ -99,6 +99,7 @@
         "summary" : "run a query",
         "operationId" : "retrieve",
         "description" : "Runs a query\n",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "path",
@@ -106,6 +107,13 @@
           "type" : "string",
           "description" : "Id of the index to be queried",
           "required" : true
+        }, {
+          "in" : "formData",
+          "name" : "queryControls",
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
         } ],
         "responses" : {
           "200" : {
