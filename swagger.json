@@ -108,7 +108,7 @@
           "description" : "Id of the index to be queried",
           "required" : true
         }, {
-          "in" : "formData",
+          "in" : "body",
           "name" : "queryControls",
           "type" : "array",
           "items" : {
@@ -254,13 +254,17 @@
   "definitions" : {
     "RemoteIndex" : {
       "type" : "object",
-      "required" : [ "path", "name", "props" ],
+      "required" : [ "path", "prefix", "indexId", "props" ],
       "properties" : {
         "path" : {
           "type" : "string",
           "example" : "C:/path/to/index"
         },
-        "name" : {
+        "prefix" : {
+          "type" : "string",
+          "example" : "data"
+        },
+        "indexId" : {
           "type" : "string",
           "example" : "index1"
         },
