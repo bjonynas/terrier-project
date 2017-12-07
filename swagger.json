@@ -333,12 +333,21 @@
     },
     "Metadata" : {
       "type" : "object",
-      "required" : [ "data" ],
+      "required" : [ "metaKeys", "metaItems" ],
       "properties" : {
-        "data" : {
+        "metaKeys" : {
           "type" : "array",
           "items" : {
-            "$ref" : "#/definitions/KeyValue"
+            "type" : "string"
+          }
+        },
+        "metaItems" : {
+          "type" : "array",
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
           }
         }
       }
