@@ -356,7 +356,8 @@
         "scores" : {
           "type" : "array",
           "items" : {
-            "type" : "number"
+            "type" : "number",
+            "format" : "double"
           }
         },
         "resultSize" : {
