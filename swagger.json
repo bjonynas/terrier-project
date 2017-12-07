@@ -113,6 +113,11 @@
           "type" : "string"
         }, {
           "in" : "query",
+          "name" : "queryString",
+          "type" : "string",
+          "required" : true
+        }, {
+          "in" : "query",
           "name" : "queryControlNames",
           "type" : "array",
           "items" : {
