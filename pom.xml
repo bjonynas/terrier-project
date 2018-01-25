@@ -50,7 +50,7 @@
         <executions>
           <execution>
             <id>start-jetty</id>
-            <phase>pre-integration-test</phase>
+            <phase>pre-integration-RetrievalTests</phase>
             <goals>
               <goal>start</goal>
             </goals>
@@ -60,7 +60,7 @@
           </execution>
           <execution>
             <id>stop-jetty</id>
-            <phase>post-integration-test</phase>
+            <phase>post-integration-RetrievalTests</phase>
             <goals>
               <goal>stop</goal>
             </goals>
@@ -183,7 +183,7 @@
     <dependency>
       <groupId>org.terrier</groupId>
       <artifactId>terrier-core</artifactId>
-      <version>4.2</version>
+      <version>4.2.remote</version>
       <exclusions>
         <exclusion>
           <groupId>org.eclipse.jetty</groupId>

@@ -43,7 +43,7 @@ public class RemoteResultSet   {
   private List<Integer> docIds = new ArrayList<Integer>();
 
   @JsonProperty("scores")
-  private List<Integer> scores = new ArrayList<Integer>();
+  private List<Double> scores = new ArrayList<Double>();
 
   @JsonProperty("resultSize")
   private Integer resultSize = null;
@@ -74,12 +74,13 @@ public class RemoteResultSet   {
     this.docIds = docIds;
   }
 
-  public RemoteResultSet scores(List<Integer> scores) {
+
+  public RemoteResultSet scores(List<Double> scores) {
     this.scores = scores;
     return this;
   }
 
-  public RemoteResultSet addScoresItem(Integer scoresItem) {
+  public RemoteResultSet addScoresItem(Double scoresItem) {
     this.scores.add(scoresItem);
     return this;
   }
@@ -89,11 +90,11 @@ public class RemoteResultSet   {
    * @return scores
   **/
   @ApiModelProperty(required = true, value = "")
-  public List<Integer> getScores() {
+  public List<Double> getScores() {
     return scores;
   }
 
-  public void setScores(List<Integer> scores) {
+  public void setScores(List<Double> scores) {
     this.scores = scores;
   }
 

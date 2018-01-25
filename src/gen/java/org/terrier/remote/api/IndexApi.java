@@ -76,19 +76,23 @@ public class IndexApi  {
     }
     @GET
     @Path("/{indexId}/retrieve")
-    
+    @Consumes({ "application/json" })
     @Produces({ "application/json" })
     @io.swagger.annotations.ApiOperation(value = "run a query", notes = "Runs a query ", response = RemoteResultSet.class, responseContainer = "List", tags={  })
-    @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 200, message = "query results", response = RemoteResultSet.class, responseContainer = "List"),
-        
-        @io.swagger.annotations.ApiResponse(code = 403, message = "incorrect input", response = RemoteResultSet.class, responseContainer = "List"),
-        
-        @io.swagger.annotations.ApiResponse(code = 404, message = "index not found", response = RemoteResultSet.class, responseContainer = "List") })
+    @io.swagger.annotations.ApiResponses(value = {
+            @io.swagger.annotations.ApiResponse(code = 200, message = "query results", response = RemoteResultSet.class, responseContainer = "List"),
+
+            @io.swagger.annotations.ApiResponse(code = 403, message = "incorrect input", response = Void.class),
+
+            @io.swagger.annotations.ApiResponse(code = 404, message = "index not found", response = Void.class) })
     public Response retrieve(@ApiParam(value = "Id of the index to be queried",required=true) @PathParam("indexId") String indexId
-,@Context SecurityContext securityContext)
-    throws NotFoundException {
-        return delegate.retrieve(indexId,securityContext);
+            ,@ApiParam(value = "",required=true) @QueryParam("queryString") String queryString
+            ,@ApiParam(value = "") @QueryParam("queryId") String queryId
+            ,@ApiParam(value = "") @QueryParam("queryControlNames") List<String> queryControlNames
+            ,@ApiParam(value = "") @QueryParam("queryControlValues") List<String> queryControlValues
+            ,@Context SecurityContext securityContext)
+            throws NotFoundException {
+        return delegate.retrieve(indexId,queryString,queryId,queryControlNames,queryControlValues,securityContext);
     }
     @GET
     @Path("/{indexId}/stats")

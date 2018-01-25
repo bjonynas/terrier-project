@@ -26,6 +26,8 @@
 package org.terrier.remote.model;
 
 import java.util.Objects;
+
+import com.drew.lang.annotations.NotNull;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
@@ -37,32 +39,62 @@ import java.util.List;
 /**
  * Metadata
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2017-11-22T17:36:12.835Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2017-12-07T13:43:59.192Z")
 public class Metadata   {
-  @JsonProperty("data")
-  private List<KeyValue> data = new ArrayList<KeyValue>();
+  @JsonProperty("metaKeys")
+  private List<String> metaKeys = new ArrayList<String>();
 
-  public Metadata data(List<KeyValue> data) {
-    this.data = data;
+  @JsonProperty("metaItems")
+  private List<List<String>> metaItems = new ArrayList<List<String>>();
+
+  public Metadata metaKeys(List<String> metaKeys) {
+    this.metaKeys = metaKeys;
     return this;
   }
 
-  public Metadata addDataItem(KeyValue dataItem) {
-    this.data.add(dataItem);
+  public Metadata addMetaKeysItem(String metaKeysItem) {
+    this.metaKeys.add(metaKeysItem);
     return this;
   }
 
-   /**
-   * Get data
-   * @return data
-  **/
+  /**
+   * Get metaKeys
+   * @return metaKeys
+   **/
+  @JsonProperty("metaKeys")
   @ApiModelProperty(required = true, value = "")
-  public List<KeyValue> getData() {
-    return data;
+  @NotNull
+  public List<String> getMetaKeys() {
+    return metaKeys;
   }
 
-  public void setData(List<KeyValue> data) {
-    this.data = data;
+  public void setMetaKeys(List<String> metaKeys) {
+    this.metaKeys = metaKeys;
+  }
+
+  public Metadata metaItems(List<List<String>> metaItems) {
+    this.metaItems = metaItems;
+    return this;
+  }
+
+  public Metadata addMetaItemsItem(List<String> metaItemsItem) {
+    this.metaItems.add(metaItemsItem);
+    return this;
+  }
+
+  /**
+   * Get metaItems
+   * @return metaItems
+   **/
+  @JsonProperty("metaItems")
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+  public List<List<String>> getMetaItems() {
+    return metaItems;
+  }
+
+  public void setMetaItems(List<List<String>> metaItems) {
+    this.metaItems = metaItems;
   }
 
 
@@ -75,12 +107,13 @@ public class Metadata   {
       return false;
     }
     Metadata metadata = (Metadata) o;
-    return Objects.equals(this.data, metadata.data);
+    return Objects.equals(this.metaKeys, metadata.metaKeys) &&
+            Objects.equals(this.metaItems, metadata.metaItems);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data);
+    return Objects.hash(metaKeys, metaItems);
   }
 
 
@@ -88,8 +121,9 @@ public class Metadata   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Metadata {\n");
-    
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+
+    sb.append("    metaKeys: ").append(toIndentedString(metaKeys)).append("\n");
+    sb.append("    metaItems: ").append(toIndentedString(metaItems)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -105,4 +139,3 @@ public class Metadata   {
     return o.toString().replace("\n", "\n    ");
   }
 }
-

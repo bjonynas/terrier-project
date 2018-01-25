@@ -1,5 +1,6 @@
 package org.terrier.remote.api;
 
+import com.drew.lang.annotations.NotNull;
 import org.terrier.remote.api.*;
 
 import org.terrier.remote.model.RemoteIndex;
@@ -15,6 +16,6 @@ public abstract class IndexApiService {
     public abstract Response getIndexes(SecurityContext securityContext) throws NotFoundException;
     public abstract Response importIndex(RemoteIndex index,SecurityContext securityContext) throws NotFoundException;
     public abstract Response newIndex(String path,String documentType,SecurityContext securityContext) throws NotFoundException;
-    public abstract Response retrieve(String indexId,SecurityContext securityContext) throws NotFoundException;
+    public abstract Response retrieve(String indexId, @NotNull String queryString, String queryId, List<String> queryControlNames, List<String> queryControlValues, SecurityContext securityContext) throws NotFoundException;
     public abstract Response stats(String indexId,SecurityContext securityContext) throws NotFoundException;
 }
