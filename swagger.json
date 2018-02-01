@@ -3,7 +3,7 @@
   "info" : {
     "description" : "This is an API to allow a client to search a remote index with Terrier",
     "version" : "1.0.0",
-    "title" : "Terrier Remote API",
+    "title" : "Remote Terrier API",
     "contact" : {
       "email" : "2133815j@student.gla.ac.uk"
     },
@@ -57,36 +57,6 @@
             "schema" : {
               "type" : "string"
             }
-          },
-          "400" : {
-            "description" : "incorrect input"
-          }
-        }
-      }
-    },
-    "/index/new" : {
-      "post" : {
-        "summary" : "create a new index",
-        "operationId" : "newIndex",
-        "description" : "Create a new index for a collection of documents\n",
-        "consumes" : [ "multipart/form-data" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "path",
-          "in" : "formData",
-          "description" : "Path to the collection",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "documentType",
-          "in" : "formData",
-          "description" : "Type of documents to be indexed",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "index successfuly created"
           },
           "400" : {
             "description" : "incorrect input"
@@ -171,6 +141,31 @@
           },
           "404" : {
             "description" : "index not found"
+          }
+        }
+      }
+    },
+    "/index/{indexId}" : {
+      "delete" : {
+        "summary" : "remove specified index from the list of imported indexes",
+        "operationId" : "deleteIndex",
+        "description" : "Remove the specified index from the list of imported indexes\n",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "indexId",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "index successfuly deleted",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "404" : {
+            "description" : ""
           }
         }
       }
@@ -282,7 +277,7 @@
         },
         "indexId" : {
           "type" : "string",
-          "example" : "index1"
+          "example" : "1"
         },
         "props" : {
           "type" : "array",
@@ -308,26 +303,6 @@
         "numberOfPointers" : {
           "type" : "integer",
           "format" : "int64"
-        }
-      }
-    },
-    "RemoteSearchRequest" : {
-      "type" : "object",
-      "required" : [ "controls", "query" ],
-      "properties" : {
-        "queryId" : {
-          "type" : "string",
-          "example" : "1"
-        },
-        "controls" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/KeyValue"
-          }
-        },
-        "query" : {
-          "type" : "string",
-          "example" : "NUMBER REPRESENTATION IN BINARY MACHINES"
         }
       }
     },
@@ -399,6 +374,6 @@
     }
   },
   "host" : "virtserver.swaggerhub.com",
-  "basePath" : "/bjonynas/terrier-remote-api/1.0.0",
-  "schemes" : [ "https" ]
+  "schemes" : [ "https" ],
+  "basePath" : "/bjonynas/remote-terrier-api/1.0.0"
 }
