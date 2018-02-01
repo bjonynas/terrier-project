@@ -165,7 +165,7 @@
             }
           },
           "404" : {
-            "description" : ""
+            "description" : "specified index not found"
           }
         }
       }
