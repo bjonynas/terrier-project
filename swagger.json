@@ -149,7 +149,7 @@
         }
       }
     },
-    "/index/{indexId}/delete" : {
+    "/index/{indexId}" : {
       "delete" : {
         "summary" : "remove specified index from the list of imported indexes",
         "operationId" : "deleteIndex",
@@ -162,7 +162,7 @@
           "required" : true
         } ],
         "responses" : {
-          "204" : {
+          "200" : {
             "description" : "index successfuly deleted"
           },
           "404" : {
