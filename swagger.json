@@ -150,7 +150,7 @@
       }
     },
     "/index/{indexId}/delete" : {
-      "put" : {
+      "post" : {
         "summary" : "remove specified index from the list of imported indexes",
         "operationId" : "deleteIndex",
         "description" : "Remove the specified index from the list of imported indexes\n",
