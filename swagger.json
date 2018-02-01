@@ -162,11 +162,8 @@
           "required" : true
         } ],
         "responses" : {
-          "200" : {
-            "description" : "index successfuly deleted",
-            "schema" : {
-              "type" : "string"
-            }
+          "204" : {
+            "description" : "index successfuly deleted"
           },
           "404" : {
             "description" : "specified index not found"
