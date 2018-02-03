@@ -64,7 +64,7 @@
         }
       }
     },
-    "/index/{indexId}/retrieve" : {
+    "/index/{indexName}/retrieve" : {
       "get" : {
         "summary" : "run a query",
         "operationId" : "retrieve",
@@ -73,7 +73,7 @@
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "path",
-          "name" : "indexId",
+          "name" : "indexName",
           "type" : "string",
           "description" : "Id of the index to be queried",
           "required" : true
@@ -86,10 +86,6 @@
           "name" : "queryString",
           "type" : "string",
           "required" : true
-        }, {
-          "in" : "query",
-          "name" : "matchingModel",
-          "type" : "string"
         }, {
           "in" : "query",
           "name" : "queryControlNames",
@@ -124,7 +120,7 @@
         }
       }
     },
-    "/index/{indexId}/stats" : {
+    "/index/{indexName}/stats" : {
       "get" : {
         "summary" : "view stats about the specified index",
         "operationId" : "stats",
@@ -132,7 +128,7 @@
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "path",
-          "name" : "indexId",
+          "name" : "indexName",
           "type" : "string",
           "required" : true
         } ],
@@ -149,7 +145,7 @@
         }
       }
     },
-    "/index/{indexId}" : {
+    "/index/{indexName}" : {
       "delete" : {
         "summary" : "remove specified index from the list of imported indexes",
         "operationId" : "deleteIndex",
@@ -157,13 +153,16 @@
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "path",
-          "name" : "indexId",
+          "name" : "indexName",
           "type" : "string",
           "required" : true
         } ],
         "responses" : {
           "200" : {
-            "description" : "index successfuly deleted"
+            "description" : "index successfuly deleted",
+            "schema" : {
+              "type" : "string"
+            }
           },
           "404" : {
             "description" : "specified index not found"
@@ -266,7 +265,7 @@
   "definitions" : {
     "RemoteIndex" : {
       "type" : "object",
-      "required" : [ "path", "prefix", "indexId", "props" ],
+      "required" : [ "path", "prefix", "indexName", "props" ],
       "properties" : {
         "path" : {
           "type" : "string",
@@ -276,9 +275,10 @@
           "type" : "string",
           "example" : "data"
         },
-        "indexId" : {
+        "indexName" : {
           "type" : "string",
-          "example" : "1"
+          "example" : "firstIndex",
+          "description" : "the name under which the index will be stored and accessed"
         },
         "props" : {
           "type" : "array",
