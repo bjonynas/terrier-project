@@ -33,17 +33,21 @@ import io.swagger.annotations.ApiModelProperty;
 import org.terrier.remote.model.KeyValue;
 import java.util.ArrayList;
 import java.util.List;
+import javax.validation.constraints.*;
 
 /**
  * RemoteIndex
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2017-11-22T17:36:12.835Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2018-02-03T11:07:24.149Z")
 public class RemoteIndex   {
   @JsonProperty("path")
   private String path = null;
 
-  @JsonProperty("name")
-  private String name = null;
+  @JsonProperty("prefix")
+  private String prefix = null;
+
+  @JsonProperty("indexName")
+  private String indexName = null;
 
   @JsonProperty("props")
   private List<KeyValue> props = new ArrayList<KeyValue>();
@@ -53,11 +57,13 @@ public class RemoteIndex   {
     return this;
   }
 
-   /**
+  /**
    * Get path
    * @return path
-  **/
+   **/
+  @JsonProperty("path")
   @ApiModelProperty(example = "C:/path/to/index", required = true, value = "")
+  @NotNull
   public String getPath() {
     return path;
   }
@@ -66,22 +72,44 @@ public class RemoteIndex   {
     this.path = path;
   }
 
-  public RemoteIndex name(String name) {
-    this.name = name;
+  public RemoteIndex prefix(String prefix) {
+    this.prefix = prefix;
     return this;
   }
 
-   /**
-   * Get name
-   * @return name
-  **/
-  @ApiModelProperty(example = "index1", required = true, value = "")
-  public String getName() {
-    return name;
+  /**
+   * Get prefix
+   * @return prefix
+   **/
+  @JsonProperty("prefix")
+  @ApiModelProperty(example = "data", required = true, value = "")
+  @NotNull
+  public String getPrefix() {
+    return prefix;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setPrefix(String prefix) {
+    this.prefix = prefix;
+  }
+
+  public RemoteIndex indexName(String indexName) {
+    this.indexName = indexName;
+    return this;
+  }
+
+  /**
+   * the name under which the index will be stored and accessed
+   * @return indexName
+   **/
+  @JsonProperty("indexName")
+  @ApiModelProperty(example = "firstIndex", required = true, value = "the name under which the index will be stored and accessed")
+  @NotNull
+  public String getIndexName() {
+    return indexName;
+  }
+
+  public void setIndexName(String indexName) {
+    this.indexName = indexName;
   }
 
   public RemoteIndex props(List<KeyValue> props) {
@@ -94,11 +122,13 @@ public class RemoteIndex   {
     return this;
   }
 
-   /**
+  /**
    * Get props
    * @return props
-  **/
+   **/
+  @JsonProperty("props")
   @ApiModelProperty(required = true, value = "")
+  @NotNull
   public List<KeyValue> getProps() {
     return props;
   }
@@ -118,13 +148,14 @@ public class RemoteIndex   {
     }
     RemoteIndex remoteIndex = (RemoteIndex) o;
     return Objects.equals(this.path, remoteIndex.path) &&
-        Objects.equals(this.name, remoteIndex.name) &&
-        Objects.equals(this.props, remoteIndex.props);
+            Objects.equals(this.prefix, remoteIndex.prefix) &&
+            Objects.equals(this.indexName, remoteIndex.indexName) &&
+            Objects.equals(this.props, remoteIndex.props);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(path, name, props);
+    return Objects.hash(path, prefix, indexName, props);
   }
 
 
@@ -132,9 +163,10 @@ public class RemoteIndex   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RemoteIndex {\n");
-    
+
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    prefix: ").append(toIndentedString(prefix)).append("\n");
+    sb.append("    indexName: ").append(toIndentedString(indexName)).append("\n");
     sb.append("    props: ").append(toIndentedString(props)).append("\n");
     sb.append("}");
     return sb.toString();

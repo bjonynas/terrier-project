@@ -1,5 +1,5 @@
 /*
- * Terrier Remote API
+ * Remote Terrier API
  * This is an API to allow a client to search a remote index with Terrier
  *
  * OpenAPI spec version: 1.0.0
@@ -27,53 +27,37 @@ package org.terrier.remote.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import javax.validation.constraints.*;
 
 /**
- * IndexProps
+ * RemoteDocument
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2017-11-22T14:19:28.322Z")
-public class IndexProps   {
-  @JsonProperty("propName")
-  private String propName = null;
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2018-02-01T12:31:55.909Z")
+public class RemoteDocument   {
+  @JsonProperty("filename")
+  private String filename = null;
 
-  @JsonProperty("propValue")
-  private String propValue = null;
-
-  public IndexProps propName(String propName) {
-    this.propName = propName;
+  public RemoteDocument filename(String filename) {
+    this.filename = filename;
     return this;
   }
 
-   /**
-   * Get propName
-   * @return propName
-  **/
-  @ApiModelProperty(value = "")
-  public String getPropName() {
-    return propName;
+  /**
+   * Get filename
+   * @return filename
+   **/
+  @JsonProperty("filename")
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+  public String getFilename() {
+    return filename;
   }
 
-  public void setPropName(String propName) {
-    this.propName = propName;
-  }
-
-  public IndexProps propValue(String propValue) {
-    this.propValue = propValue;
-    return this;
-  }
-
-   /**
-   * Get propValue
-   * @return propValue
-  **/
-  @ApiModelProperty(value = "")
-  public String getPropValue() {
-    return propValue;
-  }
-
-  public void setPropValue(String propValue) {
-    this.propValue = propValue;
+  public void setFilename(String filename) {
+    this.filename = filename;
   }
 
 
@@ -85,24 +69,22 @@ public class IndexProps   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    IndexProps indexProps = (IndexProps) o;
-    return Objects.equals(this.propName, indexProps.propName) &&
-        Objects.equals(this.propValue, indexProps.propValue);
+    RemoteDocument remoteDocument = (RemoteDocument) o;
+    return Objects.equals(this.filename, remoteDocument.filename);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(propName, propValue);
+    return Objects.hash(filename);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class IndexProps {\n");
+    sb.append("class RemoteDocument {\n");
     
-    sb.append("    propName: ").append(toIndentedString(propName)).append("\n");
-    sb.append("    propValue: ").append(toIndentedString(propValue)).append("\n");
+    sb.append("    filename: ").append(toIndentedString(filename)).append("\n");
     sb.append("}");
     return sb.toString();
   }

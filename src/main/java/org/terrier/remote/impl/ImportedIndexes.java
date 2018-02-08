@@ -1,4 +1,4 @@
-package org.terrier.remote.api.impl;
+package org.terrier.remote.impl;
 
 import org.terrier.querying.Manager;
 import org.terrier.querying.RemoteClientManager;
@@ -27,8 +27,8 @@ public class ImportedIndexes {
         return managers;
     }
 
-    public static void addIndex(String indexId, Index index){
-        indexes.put(indexId, index);
+    public static void addIndex(String indexName, Index index){
+        indexes.put(indexName, index);
     }
-    public static void addManager(String indexId, Manager manager) { managers.put(indexId, manager); }
+    public static void addManager(String indexName, Manager manager) { managers.put(indexName, manager); }
 }

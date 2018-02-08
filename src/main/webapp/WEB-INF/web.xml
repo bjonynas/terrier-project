@@ -29,23 +29,23 @@
         <servlet-name>Jersey2Config</servlet-name>
         <servlet-class>io.swagger.jersey.config.JerseyJaxrsConfig</servlet-class>
         <init-param>
-            <param-name>api.version</param-name>
+            <param-name>org.terrier.remote.api.version</param-name>
             <param-value>1.0.0</param-value>
         </init-param>
         <init-param>
-            <param-name>swagger.api.title</param-name>
+            <param-name>swagger.org.terrier.remote.api.title</param-name>
             <param-value>Swagger Server</param-value>
         </init-param>
         <init-param>
-            <param-name>swagger.api.basepath</param-name>
-            <param-value>https://virtserver.swaggerhub.com/bjonynas/terrier-remote-api/1.0.0</param-value>
+            <param-name>swagger.org.terrier.remote.api.basepath</param-name>
+            <param-value>https://virtserver.swaggerhub.com/bjonynas/terrier-remote-org.terrier.remote.api/1.0.0</param-value>
         </init-param>
 
         <load-on-startup>2</load-on-startup>
     </servlet>
     <servlet>
         <servlet-name>Bootstrap</servlet-name>
-        <servlet-class>org.terrier.remote.api.Bootstrap</servlet-class>
+        <servlet-class>org.terrier.remote.Bootstrap</servlet-class>
         <load-on-startup>2</load-on-startup>
     </servlet>
     <servlet-mapping>
@@ -63,7 +63,7 @@
 
     <servlet>
         <servlet-name>MainPage</servlet-name>
-        <jsp-file>/main.jsp</jsp-file>
+        <servlet-class>org.terrier.remote.mainPageServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainPage</servlet-name>

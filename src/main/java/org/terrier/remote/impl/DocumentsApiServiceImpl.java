@@ -1,4 +1,4 @@
-package org.terrier.remote.api.impl;
+package org.terrier.remote.impl;
 
 import org.terrier.remote.api.*;
 

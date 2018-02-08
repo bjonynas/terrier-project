@@ -1,10 +1,10 @@
 package org.terrier.remote.api;
 
-import org.terrier.remote.api.factories.DocumentsApiServiceFactory;
+import org.terrier.remote.factories.DocumentsApiServiceFactory;
 
 import io.swagger.annotations.ApiParam;
 
-import org.terrier.remote.model.Document;
+import org.terrier.remote.model.RemoteDocument;
 
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
@@ -57,11 +57,11 @@ public class DocumentsApi  {
     @Path("/{collection}")
     
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "get list of documents in the specified collection", notes = "Get a list of all documents in specified collection\" ", response = Document.class, responseContainer = "List", tags={  })
+    @io.swagger.annotations.ApiOperation(value = "get list of documents in the specified collection", notes = "Get a list of all documents in specified collection\" ", response = RemoteDocument.class, responseContainer = "List", tags={  })
     @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 200, message = "list of documents", response = Document.class, responseContainer = "List"),
+        @io.swagger.annotations.ApiResponse(code = 200, message = "list of documents", response = RemoteDocument.class, responseContainer = "List"),
         
-        @io.swagger.annotations.ApiResponse(code = 404, message = "collection not found", response = Document.class, responseContainer = "List") })
+        @io.swagger.annotations.ApiResponse(code = 404, message = "collection not found", response = RemoteDocument.class, responseContainer = "List") })
     public Response getDocuments(@ApiParam(value = "path of the collection from which documents are to be shown",required=true) @PathParam("collection") String collection
 ,@Context SecurityContext securityContext)
     throws NotFoundException {

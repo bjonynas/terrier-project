@@ -1,4 +1,4 @@
-package org.terrier.remote.api;
+package org.terrier.remote;
 
 import io.swagger.jaxrs.config.SwaggerContextService;
 import io.swagger.models.*;
