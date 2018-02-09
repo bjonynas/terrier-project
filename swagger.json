@@ -124,7 +124,7 @@
         }
       }
     },
-    "/index/{indexName}/stats" : {
+    "/index/{indexName}" : {
       "get" : {
         "summary" : "view stats about the specified index",
         "operationId" : "stats",
@@ -147,9 +147,7 @@
             "description" : "index not found"
           }
         }
-      }
-    },
-    "/index/{indexName}" : {
+      },
       "delete" : {
         "summary" : "remove specified index from the list of imported indexes",
         "operationId" : "deleteIndex",
