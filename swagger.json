@@ -88,10 +88,6 @@
           "required" : true
         }, {
           "in" : "query",
-          "name" : "matchingModel",
-          "type" : "string"
-        }, {
-          "in" : "query",
           "name" : "queryControlNames",
           "type" : "array",
           "items" : {
