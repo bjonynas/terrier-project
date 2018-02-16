@@ -109,10 +109,7 @@
           "200" : {
             "description" : "query results",
             "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/RemoteResultSet"
-              }
+              "$ref" : "#/definitions/RemoteResultSet"
             }
           },
           "403" : {
