@@ -102,19 +102,17 @@ public class IndexApiServiceImpl extends IndexApiService {
     }
 
     @Override
-    public Response retrieve(String indexName,  @NotNull String queryString,  String queryId, String matchingModel,  List<String> queryControlNames,  List<String> queryControlValues, SecurityContext securityContext) throws NotFoundException {
+    public Response retrieve(String indexName,  @NotNull String queryString,  String queryId,  String matchingModel,  String weightingModel,  List<String> queryControlNames,  List<String> queryControlValues, SecurityContext securityContext) throws NotFoundException {
         //create manager
         if(!ImportedIndexes.getIndexes().containsKey(indexName)){
             return Response.status(404).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "index not found")).build();
         }
         Manager indexManager = null;
-
         if(ImportedIndexes.getManagers().containsKey(indexName)){
-             indexManager = ImportedIndexes.getManagers().get(indexName);
-        }
-        else{
-             indexManager = new Manager(ImportedIndexes.getIndexes().get(indexName));
-             ImportedIndexes.addManager(indexName, indexManager);
+            indexManager = ImportedIndexes.getManagers().get(indexName);
+        } else{
+            indexManager = new Manager(ImportedIndexes.getIndexes().get(indexName));
+            ImportedIndexes.addManager(indexName, indexManager);
         }
 
         //create property list and set the retrieval properties using the manager setProperties method
@@ -138,12 +136,14 @@ public class IndexApiServiceImpl extends IndexApiService {
             return Response.status(403).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "failed to parse query")).build();
 
         }
-        if(matchingModel == null){
-            srq.addMatchingModel("Matching", "BM25");
+
+        if(matchingModel == null || matchingModel == "") {
+            matchingModel = "Matching";
         }
-        else{
-            srq.addMatchingModel("Matching", matchingModel);
+        if(weightingModel == null || weightingModel == "") {
+            weightingModel = "PL25";
         }
+        srq.addMatchingModel(matchingModel, weightingModel);
 
         //TODO find out how to make it so the right index is accessed here
         //run query
@@ -180,7 +180,6 @@ public class IndexApiServiceImpl extends IndexApiService {
         remoteResults.setMetadata(meta);
 
         //convert results to json and return
-
         return Response.ok(remoteResults, MediaType.APPLICATION_JSON).build();
     }
 
@@ -202,4 +201,5 @@ public class IndexApiServiceImpl extends IndexApiService {
 
         return Response.ok(remoteStats, MediaType.APPLICATION_JSON).build();
     }
+
 }

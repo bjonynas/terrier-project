@@ -1,4 +1,3 @@
-<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ page import="java.util.List, java.util.LinkedList, java.util.HashMap" %>
 
 <html>
@@ -15,8 +14,8 @@
                 <img id="logo" src="/interface/resources/terrier-logo-web.jpg">
             </div>
             <div class="sidebar">
-                <a href="#" class="w3-bar-item w3-button">Home</a>
-                <a href="#" class="w3-bar-item w3-button">Import Index</a>
+                <a href="/main" class="w3-bar-item w3-button">Home</a>
+                <a href="/index/import" class="w3-bar-item w3-button">Import Index</a>
                 <a href="#" class="w3-bar-item w3-button">Status</a>
             </div>
 
@@ -43,7 +42,7 @@
                                     <% } %>
                                 </p> </td>
                                 <td>
-                                    <a href="#" class="w3-bar-item w3-button"> >> </a>
+                                    <a href="/index/<%= key %>" class="w3-bar-item w3-button"> >> </a>
                                 </td>
                             </tr>
                         <% } %>

@@ -16,6 +16,6 @@ public abstract class IndexApiService {
     public abstract Response deleteIndex(String indexName,SecurityContext securityContext) throws NotFoundException;
     public abstract Response getIndexes(SecurityContext securityContext) throws NotFoundException;
     public abstract Response importIndex(RemoteIndex index,SecurityContext securityContext) throws NotFoundException;
-    public abstract Response retrieve(String indexName, @NotNull String queryString, String queryId, String matchingModel, List<String> queryControlNames, List<String> queryControlValues,SecurityContext securityContext) throws NotFoundException;
+    public abstract Response retrieve(String indexName, @NotNull String queryString, String queryId, String matchingModel, String weightingModel, List<String> queryControlNames, List<String> queryControlValues,SecurityContext securityContext) throws NotFoundException;
     public abstract Response stats(String indexName,SecurityContext securityContext) throws NotFoundException;
 }

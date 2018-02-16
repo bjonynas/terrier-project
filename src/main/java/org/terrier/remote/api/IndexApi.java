@@ -30,7 +30,7 @@ import javax.ws.rs.*;
 
 
 @io.swagger.annotations.Api(description = "the index API")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2018-02-03T11:07:24.149Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2018-02-16T10:01:36.412Z")
 public class IndexApi  {
  private final IndexApiService delegate;
 
@@ -100,9 +100,9 @@ public class IndexApi  {
  @Path("/{indexName}/retrieve")
  @Consumes({ "application/json" })
  @Produces({ "application/json" })
- @io.swagger.annotations.ApiOperation(value = "run a query", notes = "Runs a query ", response = RemoteResultSet.class, responseContainer = "List", tags={  })
+ @io.swagger.annotations.ApiOperation(value = "run a query", notes = "Runs a query ", response = RemoteResultSet.class, tags={  })
  @io.swagger.annotations.ApiResponses(value = {
-         @io.swagger.annotations.ApiResponse(code = 200, message = "query results", response = RemoteResultSet.class, responseContainer = "List"),
+         @io.swagger.annotations.ApiResponse(code = 200, message = "query results", response = RemoteResultSet.class),
 
          @io.swagger.annotations.ApiResponse(code = 403, message = "incorrect input", response = Void.class),
 
@@ -111,14 +111,15 @@ public class IndexApi  {
          ,@ApiParam(value = "",required=true) @QueryParam("queryString") String queryString
          ,@ApiParam(value = "") @QueryParam("queryId") String queryId
          ,@ApiParam(value = "") @QueryParam("matchingModel") String matchingModel
+         ,@ApiParam(value = "") @QueryParam("weightingModel") String weightingModel
          ,@ApiParam(value = "") @QueryParam("queryControlNames") List<String> queryControlNames
          ,@ApiParam(value = "") @QueryParam("queryControlValues") List<String> queryControlValues
          ,@Context SecurityContext securityContext)
          throws NotFoundException {
-  return delegate.retrieve(indexName,queryString,queryId,matchingModel,queryControlNames,queryControlValues,securityContext);
+  return delegate.retrieve(indexName,queryString,queryId,matchingModel,weightingModel,queryControlNames,queryControlValues,securityContext);
  }
  @GET
- @Path("/{indexName}/stats")
+ @Path("/{indexName}")
 
  @Produces({ "application/json" })
  @io.swagger.annotations.ApiOperation(value = "view stats about the specified index", notes = "View stats about the index ", response = IndexStats.class, tags={  })

@@ -1,0 +1,30 @@
+.header{
+    float: top;
+    height: 10%;
+    border-bottom-style: solid;
+}
+
+.sidebar{
+    float: left;
+    width: 10%;
+    display: block;
+    border-right-style: solid;
+    height: 90%
+}
+
+#logo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+}
+
+.w3-button{
+    width: 100%;
+}
+
+#import-body{
+    float: left;
+    width: 90%;
+    padding: 2%;
+}

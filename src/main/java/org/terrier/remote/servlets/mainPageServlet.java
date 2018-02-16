@@ -1,4 +1,4 @@
-package org.terrier.remote;
+package org.terrier.remote.servlets;
 
 import org.terrier.remote.impl.ImportedIndexes;
 import org.terrier.remote.model.IndexStats;
@@ -16,10 +16,6 @@ import java.util.List;
 import java.util.Map;
 
 public class mainPageServlet extends HttpServlet {
-
-    public void init(ServletConfig config) throws ServletException{
-        super.init(config);
-    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

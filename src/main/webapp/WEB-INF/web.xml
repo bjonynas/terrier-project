@@ -63,10 +63,36 @@
 
     <servlet>
         <servlet-name>MainPage</servlet-name>
-        <servlet-class>org.terrier.remote.mainPageServlet</servlet-class>
+        <servlet-class>org.terrier.remote.servlets.mainPageServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainPage</servlet-name>
         <url-pattern>/main</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>importPage</servlet-name>
+        <jsp-file>/interface/import.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>importPage</servlet-name>
+        <url-pattern>/index/import</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>importServlet</servlet-name>
+        <servlet-class>org.terrier.remote.servlets.importServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>importServlet</servlet-name>
+        <url-pattern>/index/importServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>statsPageServlet</servlet-name>
+        <servlet-class>org.terrier.remote.servlets.statsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>statsPageServlet</servlet-name>
+        <url-pattern>/index/*</url-pattern>
     </servlet-mapping>
 </web-app>
