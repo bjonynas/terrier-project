@@ -88,6 +88,16 @@
           "required" : true
         }, {
           "in" : "query",
+          "name" : "matchingModel",
+          "type" : "string",
+          "required" : false
+        }, {
+          "in" : "query",
+          "name" : "weightingModel",
+          "type" : "string",
+          "required" : false
+        }, {
+          "in" : "query",
           "name" : "queryControlNames",
           "type" : "array",
           "items" : {
@@ -100,16 +110,6 @@
           "items" : {
             "type" : "string"
           }
-        }, {
-          "in" : "query",
-          "name" : "matchingModel",
-          "type" : "string",
-          "required" : false
-        }, {
-          "in" : "query",
-          "name" : "weightingModel",
-          "type" : "string",
-          "required" : false
         } ],
         "responses" : {
           "200" : {
