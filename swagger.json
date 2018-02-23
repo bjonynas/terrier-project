@@ -265,6 +265,23 @@
           }
         }
       }
+    },
+    "/status" : {
+      "get" : {
+        "summary" : "get current server status",
+        "operationId" : "status",
+        "description" : "Get the current server status, e.g. memory usage\"\n",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "received server status",
+            "schema" : {
+              "$ref" : "#/definitions/ServerStatus"
+            }
+          }
+        }
+      }
     }
   },
   "definitions" : {
@@ -375,6 +392,21 @@
         },
         "propValue" : {
           "type" : "string"
+        }
+      }
+    },
+    "ServerStatus" : {
+      "type" : "object",
+      "properties" : {
+        "usedMemory" : {
+          "type" : "string"
+        },
+        "availableMemory" : {
+          "type" : "string"
+        },
+        "numberOfIndexes" : {
+          "type" : "string",
+          "description" : "nmber of imported indexes"
         }
       }
     }
