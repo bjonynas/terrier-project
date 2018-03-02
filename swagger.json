@@ -354,20 +354,27 @@
       "type" : "object",
       "required" : [ "docIds", "scores", "resultSize" ],
       "properties" : {
-        "docIds" : {
+        "documents" : {
           "type" : "array",
           "items" : {
-            "type" : "integer"
-          }
-        },
-        "scores" : {
-          "type" : "array",
-          "items" : {
-            "type" : "number",
-            "format" : "double"
+            "$ref" : "#definitions/ResultDocument"
           }
         },
         "resultSize" : {
+          "type" : "integer"
+        },
+        "metadata" : {
+          "$ref" : "#/definitions/Metadata"
+        }
+      }
+    },
+    "ResultDocument" : {
+      "type" : "object",
+      "properties" : {
+        "docId" : {
+          "type" : "integer"
+        },
+        "score" : {
           "type" : "integer"
         },
         "metadata" : {
