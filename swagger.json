@@ -357,7 +357,7 @@
         "documents" : {
           "type" : "array",
           "items" : {
-            "$ref" : "#definitions/ResultDocument"
+            "$ref" : "#/definitions/ResultDocument"
           }
         },
         "resultSize" : {
