@@ -30,69 +30,78 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.List;
+import org.terrier.remote.model.Metadata;
 import javax.validation.constraints.*;
 
 /**
- * Metadata
+ * ResultDocument
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2018-03-02T08:26:11.446Z")
-public class Metadata   {
-  @JsonProperty("metaKeys")
-  private List<String> metaKeys = new ArrayList<String>();
+public class ResultDocument   {
+  @JsonProperty("docId")
+  private Integer docId = null;
 
-  @JsonProperty("metaItems")
-  private List<String> metaItems = new ArrayList<String>();
+  @JsonProperty("score")
+  private Double score = null;
 
-  public Metadata metaKeys(List<String> metaKeys) {
-    this.metaKeys = metaKeys;
-    return this;
-  }
+  @JsonProperty("metadata")
+  private Metadata metadata = null;
 
-  public Metadata addMetaKeysItem(String metaKeysItem) {
-    this.metaKeys.add(metaKeysItem);
-    return this;
-  }
-
-  /**
-   * Get metaKeys
-   * @return metaKeys
-   **/
-  @JsonProperty("metaKeys")
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-  public List<String> getMetaKeys() {
-    return metaKeys;
-  }
-
-  public void setMetaKeys(List<String> metaKeys) {
-    this.metaKeys = metaKeys;
-  }
-
-  public Metadata metaItems(List<String> metaItems) {
-    this.metaItems = metaItems;
-    return this;
-  }
-
-  public Metadata addMetaItemsItem(String metaItemsItem) {
-    this.metaItems.add(metaItemsItem);
+  public ResultDocument docId(Integer docId) {
+    this.docId = docId;
     return this;
   }
 
   /**
-   * Get metaItems
-   * @return metaItems
+   * Get docId
+   * @return docId
    **/
-  @JsonProperty("metaItems")
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-  public List<String> getMetaItems() {
-    return metaItems;
+  @JsonProperty("docId")
+  @ApiModelProperty(value = "")
+  public Integer getDocId() {
+    return docId;
   }
 
-  public void setMetaItems(List<String> metaItems) {
-    this.metaItems = metaItems;
+  public void setDocId(Integer docId) {
+    this.docId = docId;
+  }
+
+  public ResultDocument score(Double score) {
+    this.score = score;
+    return this;
+  }
+
+  /**
+   * Get score
+   * @return score
+   **/
+  @JsonProperty("score")
+  @ApiModelProperty(value = "")
+  public Double getScore() {
+    return score;
+  }
+
+  public void setScore(Double score) {
+    this.score = score;
+  }
+
+  public ResultDocument metadata(Metadata metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+  /**
+   * Get metadata
+   * @return metadata
+   **/
+  @JsonProperty("metadata")
+  @ApiModelProperty(value = "")
+  public Metadata getMetadata() {
+    return metadata;
+  }
+
+  public void setMetadata(Metadata metadata) {
+    this.metadata = metadata;
   }
 
 
@@ -104,24 +113,26 @@ public class Metadata   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Metadata metadata = (Metadata) o;
-    return Objects.equals(this.metaKeys, metadata.metaKeys) &&
-        Objects.equals(this.metaItems, metadata.metaItems);
+    ResultDocument resultDocument = (ResultDocument) o;
+    return Objects.equals(this.docId, resultDocument.docId) &&
+        Objects.equals(this.score, resultDocument.score) &&
+        Objects.equals(this.metadata, resultDocument.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(metaKeys, metaItems);
+    return Objects.hash(docId, score, metadata);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Metadata {\n");
+    sb.append("class ResultDocument {\n");
     
-    sb.append("    metaKeys: ").append(toIndentedString(metaKeys)).append("\n");
-    sb.append("    metaItems: ").append(toIndentedString(metaItems)).append("\n");
+    sb.append("    docId: ").append(toIndentedString(docId)).append("\n");
+    sb.append("    score: ").append(toIndentedString(score)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }

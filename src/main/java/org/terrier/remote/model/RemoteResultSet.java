@@ -1,5 +1,5 @@
 /*
- * Terrier Remote API
+ * Remote Terrier API
  * This is an API to allow a client to search a remote index with Terrier
  *
  * OpenAPI spec version: 1.0.0
@@ -30,72 +30,47 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.terrier.remote.model.Metadata;
+import org.terrier.remote.model.ResultDocument;
 import java.util.ArrayList;
 import java.util.List;
+import javax.validation.constraints.*;
 
 /**
  * RemoteResultSet
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2017-11-22T17:36:12.835Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2018-03-02T08:10:44.293Z")
 public class RemoteResultSet   {
-  @JsonProperty("docIds")
-  private List<Integer> docIds = new ArrayList<Integer>();
-
-  @JsonProperty("scores")
-  private List<Double> scores = new ArrayList<Double>();
+  @JsonProperty("documents")
+  private List<ResultDocument> documents = null;
 
   @JsonProperty("resultSize")
   private Integer resultSize = null;
 
-  @JsonProperty("metadata")
-  private Metadata metadata = null;
-
-  public RemoteResultSet docIds(List<Integer> docIds) {
-    this.docIds = docIds;
+  public RemoteResultSet documents(List<ResultDocument> documents) {
+    this.documents = documents;
     return this;
   }
 
-  public RemoteResultSet addDocIdsItem(Integer docIdsItem) {
-    this.docIds.add(docIdsItem);
+  public RemoteResultSet addDocumentsItem(ResultDocument documentsItem) {
+    if (this.documents == null) {
+      this.documents = new ArrayList<ResultDocument>();
+    }
+    this.documents.add(documentsItem);
     return this;
   }
 
-   /**
-   * Get docIds
-   * @return docIds
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public List<Integer> getDocIds() {
-    return docIds;
+  /**
+   * Get documents
+   * @return documents
+   **/
+  @JsonProperty("documents")
+  @ApiModelProperty(value = "")
+  public List<ResultDocument> getDocuments() {
+    return documents;
   }
 
-  public void setDocIds(List<Integer> docIds) {
-    this.docIds = docIds;
-  }
-
-
-  public RemoteResultSet scores(List<Double> scores) {
-    this.scores = scores;
-    return this;
-  }
-
-  public RemoteResultSet addScoresItem(Double scoresItem) {
-    this.scores.add(scoresItem);
-    return this;
-  }
-
-   /**
-   * Get scores
-   * @return scores
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public List<Double> getScores() {
-    return scores;
-  }
-
-  public void setScores(List<Double> scores) {
-    this.scores = scores;
+  public void setDocuments(List<ResultDocument> documents) {
+    this.documents = documents;
   }
 
   public RemoteResultSet resultSize(Integer resultSize) {
@@ -103,35 +78,19 @@ public class RemoteResultSet   {
     return this;
   }
 
-   /**
+  /**
    * Get resultSize
    * @return resultSize
-  **/
+   **/
+  @JsonProperty("resultSize")
   @ApiModelProperty(required = true, value = "")
+  @NotNull
   public Integer getResultSize() {
     return resultSize;
   }
 
   public void setResultSize(Integer resultSize) {
     this.resultSize = resultSize;
-  }
-
-  public RemoteResultSet metadata(Metadata metadata) {
-    this.metadata = metadata;
-    return this;
-  }
-
-   /**
-   * Get metadata
-   * @return metadata
-  **/
-  @ApiModelProperty(value = "")
-  public Metadata getMetadata() {
-    return metadata;
-  }
-
-  public void setMetadata(Metadata metadata) {
-    this.metadata = metadata;
   }
 
 
@@ -144,15 +103,13 @@ public class RemoteResultSet   {
       return false;
     }
     RemoteResultSet remoteResultSet = (RemoteResultSet) o;
-    return Objects.equals(this.docIds, remoteResultSet.docIds) &&
-        Objects.equals(this.scores, remoteResultSet.scores) &&
-        Objects.equals(this.resultSize, remoteResultSet.resultSize) &&
-        Objects.equals(this.metadata, remoteResultSet.metadata);
+    return Objects.equals(this.documents, remoteResultSet.documents) &&
+        Objects.equals(this.resultSize, remoteResultSet.resultSize);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(docIds, scores, resultSize, metadata);
+    return Objects.hash(documents, resultSize);
   }
 
 
@@ -161,10 +118,8 @@ public class RemoteResultSet   {
     StringBuilder sb = new StringBuilder();
     sb.append("class RemoteResultSet {\n");
     
-    sb.append("    docIds: ").append(toIndentedString(docIds)).append("\n");
-    sb.append("    scores: ").append(toIndentedString(scores)).append("\n");
+    sb.append("    documents: ").append(toIndentedString(documents)).append("\n");
     sb.append("    resultSize: ").append(toIndentedString(resultSize)).append("\n");
-    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }

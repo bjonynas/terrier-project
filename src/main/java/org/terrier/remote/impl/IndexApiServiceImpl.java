@@ -15,6 +15,7 @@ import java.util.*;
 
 import org.terrier.remote.api.NotFoundException;
 import org.terrier.structures.IndexOnDisk;
+import org.terrier.structures.MetaIndex;
 import org.terrier.utility.ApplicationSetup;
 
 import javax.ws.rs.core.MediaType;
@@ -35,6 +36,7 @@ public class IndexApiServiceImpl extends IndexApiService {
                 //Build a RemoteIndex object from the Index object in the importedIndex list
                 RemoteIndex index = new RemoteIndex();
                 index.setIndexName(key);
+                index.setPrefix(((IndexOnDisk) (ImportedIndexes.getIndexes().get(key))).getPrefix());
                 Properties properties = ImportedIndexes.getIndexes().get(key).getProperties();
 
                 index.setPath(((IndexOnDisk) ImportedIndexes.getIndexes().get(key)).getPath());
@@ -115,6 +117,8 @@ public class IndexApiServiceImpl extends IndexApiService {
             ImportedIndexes.addManager(indexName, indexManager);
         }
 
+        MetaIndex metaIndex = ImportedIndexes.getIndexes().get(indexName).getMetaIndex();
+
         //create property list and set the retrieval properties using the manager setProperties method
         Properties props = new Properties();
         for(int p = 0; p < queryControlNames.size(); p++){
@@ -138,14 +142,13 @@ public class IndexApiServiceImpl extends IndexApiService {
         }
 
         if(matchingModel == null || matchingModel == "") {
-            matchingModel = "Matching";
+            matchingModel = org.terrier.matching.daat.Full.class.getName();
         }
         if(weightingModel == null || weightingModel == "") {
-            weightingModel = "PL25";
+            weightingModel = "BM25";
         }
         srq.addMatchingModel(matchingModel, weightingModel);
 
-        //TODO find out how to make it so the right index is accessed here
         //run query
         indexManager.runSearchRequest(srq);
         ResultSet results = srq.getResultSet();
@@ -153,31 +156,41 @@ public class IndexApiServiceImpl extends IndexApiService {
         //build remoteResultSet
         RemoteResultSet remoteResults = new RemoteResultSet();
 
-        List<Integer> docIdList = new ArrayList<Integer>();
+        List<ResultDocument> docList = new LinkedList<>();
         int[] dId = results.getDocids();
-        for(int e=0; e < dId.length; e++){
-            docIdList.add(dId[e]);
+        double[] dScores = results.getScores();
+        String[] keys = metaIndex.getKeys();
+
+        for(int x=0; x < dId.length; x++){
+
+            ResultDocument doc = new ResultDocument();
+            doc.setDocId(dId[x]);
+            doc.setScore(dScores[x]);
+            String[] metaItems = new String[0];
+            try{
+                metaItems = metaIndex.getItems(keys, x);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            LinkedList<String> keyList = new LinkedList<>();
+            LinkedList<String> valueList = new LinkedList<>();
+            for(int k=0; k<keys.length; k++){
+                keyList.add(keys[k]);
+                if(metaItems.length > 0){
+                    valueList.add(metaItems[k]);
+                }
+            }
+
+            Metadata docMeta = new Metadata();
+            docMeta.setMetaKeys(keyList);
+            docMeta.setMetaItems(valueList);
+            doc.setMetadata(docMeta);
+            docList.add(doc);
         }
 
-        List<Double> scoreList= new ArrayList<Double>();
-        double[] sL = results.getScores();
-        for(int e=0; e < sL.length; e++){
-            scoreList.add(sL[e]);
-        }
-
-        Metadata meta = new Metadata();
-        List<String> metaKeys = Arrays.asList(results.getMetaKeys());
-        List<List<String>> metaItems = new ArrayList<List<String>>();
-        for(int e=0; e<metaKeys.size(); e++){
-            metaItems.add(Arrays.asList(results.getMetaItems( metaKeys.get(e))));
-        }
-        meta.setMetaKeys(metaKeys);
-        meta.setMetaItems(metaItems);
-
-        remoteResults.setDocIds(docIdList);
-        remoteResults.setScores(scoreList);
+        remoteResults.setDocuments(docList);
         remoteResults.setResultSize(results.getResultSize());
-        remoteResults.setMetadata(meta);
 
         //convert results to json and return
         return Response.ok(remoteResults, MediaType.APPLICATION_JSON).build();
@@ -201,5 +214,4 @@ public class IndexApiServiceImpl extends IndexApiService {
 
         return Response.ok(remoteStats, MediaType.APPLICATION_JSON).build();
     }
-
 }

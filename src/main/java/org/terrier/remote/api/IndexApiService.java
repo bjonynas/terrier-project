@@ -11,7 +11,7 @@ import java.util.List;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2018-02-03T11:07:24.149Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2018-02-23T03:14:17.958Z")
 public abstract class IndexApiService {
     public abstract Response deleteIndex(String indexName,SecurityContext securityContext) throws NotFoundException;
     public abstract Response getIndexes(SecurityContext securityContext) throws NotFoundException;

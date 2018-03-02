@@ -63,7 +63,7 @@
 
     <servlet>
         <servlet-name>MainPage</servlet-name>
-        <servlet-class>org.terrier.remote.servlets.mainPageServlet</servlet-class>
+        <servlet-class>org.terrier.remote.servlets.MainPageServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainPage</servlet-name>
@@ -80,7 +80,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>importServlet</servlet-name>
-        <servlet-class>org.terrier.remote.servlets.importServlet</servlet-class>
+        <servlet-class>org.terrier.remote.servlets.ImportServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>importServlet</servlet-name>
@@ -89,10 +89,25 @@
 
     <servlet>
         <servlet-name>statsPageServlet</servlet-name>
-        <servlet-class>org.terrier.remote.servlets.statsServlet</servlet-class>
+        <servlet-class>org.terrier.remote.servlets.StatsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>statsPageServlet</servlet-name>
         <url-pattern>/index/*</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>resultsPage</servlet-name>
+        <jsp-file>/index/results</jsp-file>
+    </servlet>
+
+    <servlet>
+        <servlet-name>statusServlet</servlet-name>
+        <servlet-class>org.terrier.remote.servlets.StatusServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>statusServlet</servlet-name>
+        <url-pattern>/status</url-pattern>
+    </servlet-mapping>
+
 </web-app>

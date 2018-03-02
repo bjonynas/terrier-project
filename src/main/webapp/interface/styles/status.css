@@ -24,8 +24,8 @@
     border: 1px solid black;
 }
 
-#import-body{
+#statusContainer{
     float: left;
-    width: 90%;
     padding: 2%;
+    width: 80%;
 }

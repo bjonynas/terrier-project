@@ -21,6 +21,7 @@
 
 .w3-button{
     width: 100%;
+    border: 1px solid black;
 }
 
 .container{
@@ -34,6 +35,12 @@
     background-color: #ccc;
 }
 
-#searchDiv{
+.inline-div{
     display: inline;
+    margin: 3px;
+}
+
+#back-button{
+    width: 45%;
+    padding-right: 2%;
 }

@@ -16,7 +16,7 @@
             <div class="sidebar">
                 <a href="/main" class="w3-bar-item w3-button">Home</a>
                 <a href="/index/import" class="w3-bar-item w3-button">Import Index</a>
-                <a href="#" class="w3-bar-item w3-button">Status</a>
+                <a href="/status" class="w3-bar-item w3-button">Status</a>
             </div>
 
             <div id="tableContainer">

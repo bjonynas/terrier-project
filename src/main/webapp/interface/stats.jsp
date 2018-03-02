@@ -16,7 +16,7 @@
             <div class="sidebar">
                 <a href="/main" class="w3-bar-item w3-button">Home</a>
                 <a href="/index/import" class="w3-bar-item w3-button">Import Index</a>
-                <a href="#" class="w3-bar-item w3-button">Status</a>
+                <a href="/status" class="w3-bar-item w3-button">Status</a>
             </div>
             <div class="container" id="index-stats-container">
                 <h2> <%= request.getAttribute("indexName") %> </h2>  </ hr> </ br>
@@ -28,24 +28,21 @@
                     <% } %>
             </div>
 
-            <% if( ((boolean) request.getAttribute("searched")) == false) { %>
-                <div class="container" id="query-container" >
-                    <form name="queryForm" action="statsServlet" method="post">
-                        <div id="searchDiv">
-                            Query: <input type="text" name="queryString" />
-                            <input type="submit" value="Search" />
-                        </div>
-                        Matching Model: <input type="text" name="matchingModel" />
-                    </form>
-                </div>
-
-            <% } else { %>
-                <div>
-                    <h3> <% request.getAttribute("queryString"); %> </h3>
-                    <p> <% request.getAttribute("results"); %> </p>
-                </div>
-            <% } %>
-
+            <div class="container" >
+                <form name="queryForm" id="query-form" action="statsServlet" method="post">
+                    <div class="inline-div">
+                        Query: <input type="text" name="queryString" />
+                        <input type="submit" value="Search" />
+                    </div>
+                    <div class="inline-div">
+                        Results type:
+                        <input type="radio" name="displayType" value="JSON" checked="checked">JSON</input>
+                        <input type="radio" name="displayType" value="PlainText">Plain Text</input>
+                    </div>
+                    Matching Model: <input type="text" name="matchingModel" />
+                </form>
+            </div>
+                <a href="/main" class="w3-bar-item w3-button" id="back-button"> Back </a>
         </div>
     </body>
 </html>

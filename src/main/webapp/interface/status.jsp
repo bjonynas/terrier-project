@@ -1,9 +1,11 @@
+<%@ page import="java.util.List, java.util.LinkedList, java.util.HashMap" %>
+
 <html>
     <head>
         <meta charset="UTF-8">
         <title>Home</title>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" type="text/css" href="/interface/styles/import.css">
+        <link rel="stylesheet" type="text/css" href="/interface/styles/status.css">
     </head>
 
     <body>
@@ -17,14 +19,16 @@
                 <a href="/status" class="w3-bar-item w3-button">Status</a>
             </div>
 
-            <div id="import-body">
-                <form name="importForm" method="post" action="importServlet">
-                    Index path: <input type="text" name="indexPath" />
-                    Index prefix: <input type="text" name="indexPrefix" />
-                    Index name: <input type="text" name="indexName" />
-                    <input type="submit" value="Import" />
-                </form>
+            <div id="statusContainer">
+
+                <h2> Server Status </h2>
+
+                <p> Available Memory: <%= request.getAttribute("availableMemory") %>MB </p>
+                <p> Free Memory: <%= request.getAttribute("usedMemory") %>MB </p>
+                <p> Imported Indexes: <%= request.getAttribute("importedIndexes") %> </p>
+
             </div>
+
         </div>
     </body>
 </html>

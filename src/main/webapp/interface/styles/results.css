@@ -9,7 +9,12 @@
     width: 10%;
     display: block;
     border-right-style: solid;
-    height: 90%
+    height: 90%;
+}
+
+.w3-button{
+    width: 100%;
+    border: 1px solid black;
 }
 
 #logo{
@@ -19,13 +24,17 @@
     height: 100%;
 }
 
-.w3-button{
-    width: 100%;
+#results-container{
+    width: 90%;
+    height: 85%;
+    float: left;
+    padding: 2%;
+    overflow: auto;
     border: 1px solid black;
 }
 
-#import-body{
-    float: left;
-    width: 90%;
-    padding: 2%;
+#back-button{
+    width: 30%;
+    padding-right: 2%;
+    padding-top: 1%;
 }
