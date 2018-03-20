@@ -2,10 +2,9 @@ package org.terrier.remote.impl;
 
 import com.drew.lang.annotations.NotNull;
 import org.terrier.matching.ResultSet;
+import org.terrier.matching.models.queryexpansion.Bo1;
 import org.terrier.querying.Manager;
-import org.terrier.querying.RemoteClientManager;
 import org.terrier.querying.SearchRequest;
-import org.terrier.querying.parser.QueryParserException;
 import org.terrier.remote.api.*;
 
 import org.terrier.remote.model.*;
@@ -119,9 +118,13 @@ public class IndexApiServiceImpl extends IndexApiService {
 
         MetaIndex metaIndex = ImportedIndexes.getIndexes().get(indexName).getMetaIndex();
 
+        boolean queryExpansion = false;
         //create property list and set the retrieval properties using the manager setProperties method
         Properties props = new Properties();
         for(int p = 0; p < queryControlNames.size(); p++){
+            if(queryControlNames.get(p).equals("queryExpansion")){
+                queryExpansion = Boolean.parseBoolean(queryControlValues.get(p));
+            }
             props.setProperty(queryControlNames.get(p), queryControlValues.get(p));
         }
         indexManager.setProperties(props);
@@ -149,6 +152,10 @@ public class IndexApiServiceImpl extends IndexApiService {
         }
         srq.addMatchingModel(matchingModel, weightingModel);
 
+        srq.setControl("qemodel", ApplicationSetup.getProperty("trec.qe.model", Bo1.class.getName()));
+        if(queryExpansion)
+            System.out.println("\n query expansion: true");
+            srq.setControl("qe", "on");
         //run query
         indexManager.runSearchRequest(srq);
         ResultSet results = srq.getResultSet();

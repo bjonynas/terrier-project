@@ -1,7 +1,6 @@
 package org.terrier.remote.impl;
 
 import org.terrier.querying.Manager;
-import org.terrier.querying.RemoteClientManager;
 import org.terrier.structures.Index;
 import java.util.HashMap;
 

@@ -34,12 +34,22 @@
                         Query: <input type="text" name="queryString" />
                         <input type="submit" value="Search" />
                     </div>
-                    <div class="inline-div">
+                    <p>
                         Results type:
                         <input type="radio" name="displayType" value="JSON" checked="checked">JSON</input>
                         <input type="radio" name="displayType" value="PlainText">Plain Text</input>
-                    </div>
-                    Matching Model: <input type="text" name="matchingModel" />
+                    <p>
+                    <p>
+                        Query Expansion:
+                        <input type="radio" name="queryExpansion" value="yes" checked="checked">Yes</input>
+                        <input type="radio" name="queryExpansion" value="no">No</input>
+                    </p>
+                    <p>
+                        Matching Model:  <input type="text" name="matchingModel" />
+                    </p>
+                    <p>
+                        Weighting Model: <input type="text" name="matchingModel" />
+                    </p>
                 </form>
             </div>
                 <a href="/main" class="w3-bar-item w3-button" id="back-button"> Back </a>

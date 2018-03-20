@@ -54,7 +54,6 @@ public class StatsServlet extends HttpServlet{
         indexStats.add("Number of tokens: " + ((IndexStats) (s.getEntity())).getNumberOfTokens());
         indexStats.add("Number of pointers: " + ((IndexStats) (s.getEntity())).getNumberOfPointers());
 
-        req.setAttribute("searched", false);
         req.setAttribute("indexName", indexName);
         req.setAttribute("indexStats", indexStats);
         req.getRequestDispatcher("/interface/stats.jsp").forward(req,resp);
@@ -65,9 +64,17 @@ public class StatsServlet extends HttpServlet{
         String queryString = req.getParameter("queryString");
         String queryId = req.getParameter("queryId");
         Response response = null;
+        LinkedList<String> queryControlNames = new LinkedList<String>();
+        LinkedList<String> queryControlValues = new LinkedList<String>();
+
+        queryControlNames.add("queryExpansion");
+        if(req.getParameter("queryExpansion").equals("yes"))
+            queryControlValues.add("true");
+        else
+            queryControlValues.add("false");
 
         try{
-            response = api.retrieve(latestIndex, queryString, queryId, "", "", new LinkedList<String>(),new LinkedList<String>(), null);
+            response = api.retrieve(latestIndex, queryString, queryId, "", "", queryControlNames, queryControlValues, null);
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -104,8 +111,6 @@ public class StatsServlet extends HttpServlet{
             }
 
         } catch(Exception e){
-            //String r = ((ApiResponseMessage) response.getEntity()).getMessage();
-            //req.setAttribute("r", r);
             e.printStackTrace();
         }
         req.getRequestDispatcher("/interface/results.jsp").forward(req,resp);
