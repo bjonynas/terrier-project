@@ -23,7 +23,7 @@
                 </h3>
 
                 <% if(request.getAttribute("r") == null) { %>
-                    <pre id="results" style="white-space: pre-wrap;"> <%= request.getAttribute("results") %> </pre>
+                    <code id="results" style="white-space: pre-wrap;"> <%= request.getAttribute("results") %> </code>
                 <% } else{ %>
                     <p> Error: <%= request.getAttribute("r") %> </p>
                 <% } %>

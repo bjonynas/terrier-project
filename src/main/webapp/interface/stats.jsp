@@ -44,12 +44,6 @@
                         <input type="radio" name="queryExpansion" value="yes" checked="checked">Yes</input>
                         <input type="radio" name="queryExpansion" value="no">No</input>
                     </p>
-                    <p>
-                        Matching Model:  <input type="text" name="matchingModel" />
-                    </p>
-                    <p>
-                        Weighting Model: <input type="text" name="matchingModel" />
-                    </p>
                 </form>
             </div>
                 <a href="/main" class="w3-bar-item w3-button" id="back-button"> Back </a>
