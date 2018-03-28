@@ -99,7 +99,8 @@ public class StatsServlet extends HttpServlet{
                         if(item.length() > 300){
                             item = item.substring(0, 300);
                         }
-                        resultString.append( item + "\n");
+                        item = item.replaceAll("\\s+", " ");
+                        resultString.append( item + "\n\n");
                     }
                 }
                 req.setAttribute("results", resultString.toString().trim());

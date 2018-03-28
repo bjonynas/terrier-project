@@ -116,8 +116,6 @@ public class IndexApiServiceImpl extends IndexApiService {
             ImportedIndexes.addManager(indexName, indexManager);
         }
 
-        MetaIndex metaIndex = ImportedIndexes.getIndexes().get(indexName).getMetaIndex();
-
         boolean queryExpansion = false;
         //create property list and set the retrieval properties using the manager setProperties method
         Properties props = new Properties();
@@ -151,6 +149,8 @@ public class IndexApiServiceImpl extends IndexApiService {
             weightingModel = "BM25";
         }
         srq.addMatchingModel(matchingModel, weightingModel);
+
+        MetaIndex metaIndex = ImportedIndexes.getIndexes().get(indexName).getMetaIndex();
 
         srq.setControl("qemodel", ApplicationSetup.getProperty("trec.qe.model", Bo1.class.getName()));
         if(queryExpansion)
